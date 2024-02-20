@@ -1,0 +1,1 @@
+# predictastock-app
