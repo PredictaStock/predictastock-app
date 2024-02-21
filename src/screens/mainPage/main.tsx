@@ -2,9 +2,8 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import List from "../../components/List/List";
 import "./main.css";
-import React from "react";
 
-function App() {
+function Main() {
   const [inputText, setInputText] = useState("");
   let inputHandler = (e: { target: { value: string; }; }) => {
     //convert input text to lower case
@@ -29,4 +28,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;
