@@ -28,7 +28,7 @@ function StockPage() {
       <h1>PredictaStock</h1>
       <h2 style={{fontSize: '40px'}}>{stockName}</h2>
       {prediction !== null && (
-        <div className="prediction" style={{ fontSize: '20px' }}>Preço de fechamento esperado para hoje: {prediction}</div>
+        <div className="prediction" style={{ fontSize: '20px' }}>Preço de fechamento esperado para hoje: {prediction.toFixed(2)}</div>
         )}
       <LineChart stockName={stockName} /> {/* Pass the stockName */}
     </div>

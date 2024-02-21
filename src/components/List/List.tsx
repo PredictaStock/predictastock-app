@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 function List(props: { input: string; }) {
     // Create a new array by filtering the original array
-
     const filteredData = data.filter((el) => {
         if (props.input === '') {
             return true;
@@ -24,7 +23,6 @@ function List(props: { input: string; }) {
         const fetchData = async () => {
             const fetchedPrices: Record<string, number | null> = {};
 
-    
             for (const item of filteredData) {
                 const service = new CurrentPriceService();
                 try {
@@ -67,25 +65,26 @@ function List(props: { input: string; }) {
     
 
         
-        return (
-            <Box display="flex" flexWrap="wrap" justifyContent="space-between" width="600px">
-              {filteredData.map((item) => (
+    return (
+        <Box display="flex" flexWrap="wrap" justifyContent="space-between" width="600px">
+            {filteredData.map((item) => (
                 <div key={item.id} style={{ cursor: 'pointer' }}>
-                  <Link to={`/stockPage/${item.name}`}> {/* Navigate to stockPage with stockName as parameter */}
-                    <Box className="box" color="black" p={1} m={1} width="200px" height="240px">
-                      <div style={{ textAlign: 'center', fontSize: '24px' }}>{item.name}</div> {/* Centered and increased font size */}
-                      <br />
-                      {prices[item.name] !== undefined ? prices[item.name] : "No data available"}
-                      <Box mt={2} textAlign="center">
-                        <FaChartLine size={64} />
-                      </Box>
-                    </Box>
-                  </Link>
+                    <Link to={`/stockPage/${item.name}`}> {/* Navigate to stockPage with stockName as parameter */}
+                        <Box className="box" color="black" p={1} m={1} width="200px" height="240px">
+                            <div style={{ textAlign: 'center', fontSize: '24px' }}>{item.name}</div> {/* Centered and increased font size */}
+                            <br />
+                            <div style={{ textAlign: 'center', fontSize: '20px' }}>
+                                {prices[item.name] !== undefined ? prices[item.name]?.toFixed(2) : "Loading..."}
+                            </div> {/* Display price with two digits after the decimal point */}
+                            <Box mt={2} textAlign="center">
+                                <FaChartLine size={64} />
+                            </Box>
+                        </Box>
+                    </Link>
                 </div>
-              ))}
-            </Box>
-          );
-        }
-
+            ))}
+        </Box>
+    );
+}
 
 export default List;
